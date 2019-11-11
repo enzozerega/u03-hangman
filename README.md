@@ -11,4 +11,11 @@
       <li style="background-color:#B712B8;">$pink = #B712B8</li>
     </ul>
   </li>
+  <li> Win and loose figures:
+    <ul>
+      <li><a href="https://www.vecteezy.com/free-vector/loser">Loser Vectors by Vecteezy</a></li>
+      <li><a href="https://www.vecteezy.com/free-vector/loser">Loser Vectors by Vecteezy</a></li>
+      <li><a href="https://www.vecteezy.com/free-vector/trophy">Trophy Vectors by Vecteezy</a></li>
+    </ul>
+  </li>
 </ul>
