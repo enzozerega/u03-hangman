@@ -2,11 +2,34 @@
 $title-font: 'Fredoka One', cursive;
 $text-font: 'Muli', sans-serif;
 $key-font: 1.5vw;
+$letter-font: 3vw;
 $brown: #B5AE93;
 $blue: #32E3C7;
 $yellow: #FAD95C;
 $lightpink: #C773C7;
 $pink: #B712B8;
+
+#input-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:2vw 15vw;
+    background-color: $lightpink;
+
+    .letter-box {
+        font-family: $text-font;
+        font-size: $letter-font;
+        border-bottom: 3px solid $brown;
+        margin:0.5vw;
+        width: 4vw;
+        height: 4vw;
+        text-align: center;
+    }
+}
+
+
+
+
 
 #keyboard {
     display: flex;

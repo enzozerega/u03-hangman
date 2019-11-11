@@ -1,4 +1,27 @@
 /* Styling */
+#input-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 2vw 15vw;
+  background-color: #C773C7;
+}
+
+#input-box .letter-box {
+  font-family: "Muli", sans-serif;
+  font-size: 3vw;
+  border-bottom: 3px solid #B5AE93;
+  margin: 0.5vw;
+  width: 4vw;
+  height: 4vw;
+  text-align: center;
+}
+
 #keyboard {
   display: -webkit-box;
   display: -ms-flexbox;
