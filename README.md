@@ -4,11 +4,11 @@
   <li>Font:<a href="https://fonts.google.com/specimen/Muli?selection.family=Muli"> Muli</a></li>
   <li>Color palette:
     <ul>
-      <li>$brown = #B5AE93</li>
-      <li>$blue = #32E3C7</li>
-      <li>$yellow = #FAD95C</li>
-      <li>$lightpink = #C773C7</li>
-      <li>$pink = #B712B8</li>
+      <li style="background-color:#B5AE93;">$brown = #B5AE93</li>
+      <li style="background-color:#32E3C7;">$blue = #32E3C7</li>
+      <li style="background-color:#FAD95C;">$yellow = #FAD95C</li>
+      <li style="background-color:#C773C7;">$lightpink = #C773C7</li>
+      <li style="background-color:#B712B8;">$pink = #B712B8</li>
     </ul>
   </li>
 </ul>
