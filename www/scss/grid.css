@@ -34,8 +34,9 @@
 
 .hexIn{
     position: absolute;
+
     width:100%;
-    padding-bottom: 115.47%; /* =  width / sin(60) */
+    padding-bottom: 115.5%; /* =  width / sin(60) */
     margin:0;
     overflow: hidden;
     visibility: hidden;
@@ -54,7 +55,7 @@
 
 .hexLink {
     display:block;
-    background: conic-gradient(#845EC2 33.3%, #BE93FD 0 66.6%, #FACCFF 0);
+    background: conic-gradient(#BE93FD 33.3%, #FACCFF 0 66.6%, #845EC2 0);
     width: 100%;
     height: 100%;
     text-align: center;
@@ -64,14 +65,20 @@
         -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
             transform: skewY(-30deg) rotate3d(0,0,1,60deg);
 }
-
-.hexLink:target {
-    background: conic-gradient(#BE93FD 33.3%, #FACCFF 0 66.6%, #845EC2 0);
-
+span {
+    transform: skewY(-30deg);
+    font-size: 10vw;
+    position: absolute;
+    left: 1.2vw;
+    top: 4vw;
 }
-.hexLink:focus {
-    background: conic-gradient(#BE93FD 33.3%, #FACCFF 0 66.6%, #845EC2 0);
-}
-.hexLink:active {
-    background: conic-gradient(#BE93FD 33.3%, #FACCFF 0 66.6%, #845EC2 0);
+
+.clicked-cube {
+    filter: saturate(0);
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+    transition: 1s ease-in-out;
+
+
 }
