@@ -102,7 +102,7 @@
       -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
           transform: skewY(-30deg) rotate3d(0,0,1,60deg);
 }
-span {
+.key-letter {
   transform: skewY(-30deg);
   font-size: 3vw;
   position: absolute;

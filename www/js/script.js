@@ -26,22 +26,45 @@ function task(i) {
   }, 100 * i); 
 };
 
-function clickedCube(identifier) {
-  document.getElementById(identifier).setAttribute('class', 'box-link clicked-cube');
-}
-
-
-
 let words = ['Blue', 'Green', 'Yellow', 'Pink'];
 let indexRandom = Math.floor(Math.random() * words.length);
 let wordRandom = words[indexRandom];
-delete words[indexRandom];
-for (i=0; i < wordRandom.length; i++) {
-    let letterBox = document.createElement('div');
-    letterBox.className = 'letter-box';
-    let letterSpan = document.createElement('span');
-    letterSpan.className = 'input-letter';
-    document.getElementById('input-box').appendChild(letterBox);
-    letterBox.appendChild(letterSpan);
+let winner = wordRandom.length;
+
+function wordGenerator() {
+  for (i=0; i < wordRandom.length; i++) {
+      let letterBox = document.createElement('div');
+      letterBox.className = 'letter-box';
+      let letterSpan = document.createElement('span');
+      letterSpan.className = 'input-letter';
+      document.getElementById('input-box').appendChild(letterBox);
+      letterBox.appendChild(letterSpan);
+  }
+}
+
+wordGenerator();
+
+function clickedCube(identifier) {
+  document.getElementById(identifier).setAttribute('class', 'box-link clicked-cube');
+  let clickedKey = document.getElementById(identifier).firstChild.innerHTML;
+  for (i=0; i < wordRandom.length; i++) {
+    if (wordRandom[i] === clickedKey || wordRandom[i] === clickedKey.toLowerCase()) {
+      document.getElementsByClassName('input-letter')[i].innerHTML = clickedKey;
+      winner --;
+    }
+  }
+  if (winner === 0) {
+    /* Code for winning part */
+    let oldElements = document.getElementsByClassName('letter-box');
+    while(oldElements.length > 0) {
+      oldElements[0].parentNode.removeChild(oldElements[0]);
+    }
+    
+    wordGenerator();
+    for (j=0; j < keyLetter.length; j++) {
+      document.getElementById('letter-'+keyLetter[j]).setAttribute('class', 'box-link');
+    }
+    delete words[indexRandom];
+  }
 }
 
