@@ -26,7 +26,7 @@ function task(i) {
         keyBox.classList.remove("faded-out")
       });
 
-  }, 300 * i); 
+  }, 100 * i); 
 };
 
 
