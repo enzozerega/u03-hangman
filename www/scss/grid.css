@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#hexGrid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    list-style-type: none;
+    padding-bottom: 7%
+}
+
+.hex:nth-child(7n+5){ /* first hexagon of even rows */
+    margin-left:12.5%;  /* = width of .hex / 2  to indent even rows */
+}
+
+.hex {
+    position: relative;
+    width: 25%; /* = 100 / 4 */
+    visibility:hidden;
+    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+.hex::after{
+    content:'';
+
+    display:block;
+    padding-bottom: 86.602%;  /* =  100 / tan(60) * 1.5 */
+}
+
+.hexIn{
+    position: absolute;
+
+    width:100%;
+    padding-bottom: 115.5%; /* =  width / sin(60) */
+    margin:0;
+    overflow: hidden;
+    visibility: hidden;
+    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+        -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+            transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+}
+
+
+  .hexIn * {
+    position: absolute;
+    visibility: visible;
+    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+
+.hexLink {
+    display:block;
+    background: conic-gradient(#BE93FD 33.3%, #FACCFF 0 66.6%, #845EC2 0);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+        -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+            transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+span {
+    transform: skewY(-30deg);
+    font-size: 10vw;
+    position: absolute;
+    left: 1.2vw;
+    top: 4vw;
+}
+
+.clicked-cube {
+    filter: saturate(0);
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+    transition: 1s ease-in-out;
+
+
+}
