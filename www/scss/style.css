@@ -5,6 +5,71 @@
   padding: 0;
 }
 
+/* Start button */
+
+.hex-box {
+  position: relative;
+  margin: 0 auto;
+  width: 20vw; /* = 100 / 4 */
+  visibility:hidden;
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+.hex-box::after{
+  content:'';
+
+  display:block;
+  padding-bottom: 86.602%;  /* =  100 / tan(60) * 1.5 */
+}
+
+.hex-box-in {
+  position: absolute;
+  width:100%;
+  padding-bottom: 115.5%; /* =  width / sin(60) */
+  margin:0;
+  overflow: hidden;
+  visibility: hidden;
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+      -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+          transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+}
+
+
+.hex-box-in * {
+  position: absolute;
+  visibility: visible;
+  outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+
+.hex-box-link {
+  display:block;
+  background: conic-gradient(#6097FB 33.3%, #0095E5 0 66.6%, #008CBD 0);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  transition: filter .5s;
+  filter: saturate(1);
+  -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+      -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+          transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+
+.hex-box-link:hover {
+  filter: saturate(1.5);
+}
+.start-game {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 3vw;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 40%;
+}
+
+/*Start button ends */
+
 #input-box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -35,8 +100,7 @@
   width: 90%;
   margin: 0 auto;
   overflow: hidden;
-  font-family: 'Raleway', sans-serif;
-  font-size: 15px;
+  font-family: 'Muli', sans-serif;
   list-style-type: none;
   padding-bottom: 7%
 }
