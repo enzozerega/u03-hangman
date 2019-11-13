@@ -7,27 +7,28 @@ do {
 } while (i < keyLetter.length); 
 function task(i) { 
   setTimeout(function() { 
-     
-    let keyBox = document.createElement('div');
-    keyBox.className = 'key-box faded-out';
+    let keyBox = document.createElement('li');
+    keyBox.className = 'key-box';
+    let boxIn = document.createElement('div');
+    boxIn.className = 'box-in';
+    let boxLink = document.createElement('a');
+    boxLink.className = 'box-link';
+    boxLink.setAttribute('id','letter-'+keyLetter[i]);
+    boxLink.setAttribute('href','#');
+    boxLink.setAttribute('onclick','clickedCube('+"'"+'letter-'+keyLetter[i]+"'"+')');
     let keySpan = document.createElement('span');
     keySpan.className = 'key-letter';
     keySpan.innerHTML = keyLetter[i];
     document.getElementById('keyboard').appendChild(keyBox);
-    keyBox.appendChild(keySpan);
-
-    if (keyLetter[i] === 'P'|| keyLetter[i] === 'L') {
-        let keyBreak = document.createElement('div');
-        keyBreak.className = 'key-break';
-        document.getElementById('keyboard').appendChild(keyBreak);
-    }
-
-    requestAnimationFrame(() => {
-        keyBox.classList.remove("faded-out")
-      });
-
+    keyBox.appendChild(boxIn);
+    boxIn.appendChild(boxLink);
+    boxLink.appendChild(keySpan);
   }, 100 * i); 
 };
+
+function clickedCube(identifier) {
+  document.getElementById(identifier).setAttribute('class', 'box-link clicked-cube');
+}
 
 
 
