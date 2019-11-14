@@ -1,58 +1,217 @@
-/* Styling */
-$title-font: 'Fredoka One', cursive;
-$text-font: 'Muli', sans-serif;
-$key-font: 1.5vw;
-$letter-font: 3vw;
-$brown: #B5AE93;
-$blue: #32E3C7;
-$yellow: #FAD95C;
-$lightpink: #C773C7;
-$pink: #B712B8;
 
-#input-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin:2vw 15vw;
-    background-color: $lightpink;
+//------------ COLOR PALETTE ------------//
+$main-color: #C34A36;
+$dark-purple: #845ec2;
+$purple: #be93fd;
+$light-purple: #faccff;
+$dark-orange: #FF9671;
+$orange: #FFC75F;
+$light-orange: #F9F871;
+$light-blue: #4FFBDF;
+$blue: #00D2FC;
+$dark-blue: #009EFA;
+$light-green: #4FFBDF;
+$green: #00C2A8;
+$dark-green: #008B74;
 
-    .letter-box {
-        font-family: $text-font;
-        font-size: $letter-font;
-        border-bottom: 3px solid $brown;
-        margin:0.5vw;
-        width: 4vw;
-        height: 4vw;
-        text-align: center;
-    }
+//------------ COLOR PALETTE ------------//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//------------ GENERAL STYLE ------------//
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: $main-color;
+}
+//------------ GENERAL STYLE ------------//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//---------- START GAME BUTTON ----------//
+.hex-box {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 20vw; /* = 100 / 4 */
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+.hex-box::after {
+    content: "";
+    display: block;
+    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
 }
 
+.hex-box-in {
+    position: absolute;
+    width: 100%;
+    padding-bottom: 115.5%; /* =  width / sin(60) */
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+}
 
+.hex-box-in * {
+    position: absolute;
+    visibility: visible;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
 
+.hex-box-link {
+    display: block;
+    background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    transition: filter 0.5s;
+    filter: saturate(1);
+    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+}
 
+.hex-box-link:hover {
+    filter: saturate(1.5);
+}
+.start-game {
+    font-family: "Fredoka One", sans-serif;
+    font-size: 3vw;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/*Start button ends */
+
+#input-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 2vw 15vw;
+    background-color: #c773c7;
+}
+
+#input-box .letter-box {
+    font-family: "Muli", sans-serif;
+    font-size: 3vw;
+    border-bottom: 3px solid #b5ae93;
+    margin: 0.5vw;
+    width: 4vw;
+    height: 4vw;
+    text-align: center;
+}
 
 #keyboard {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    font-family: "Muli", sans-serif;
+    list-style-type: none;
+    padding-bottom: 7%;
 }
 
 .key-box {
-    font-family: $text-font;
-    font-size: $key-font;
-    border: 1px solid $brown;
-    border-radius: 12px;
-    padding: 1vw;
-    margin:0.2vw;
-    width: 2vw;
-    height: 2vw;
-    text-align: center;
-    &:hover {
-        background-color: $brown;
+    position: relative;
+    width: 10%; /* = 100 / 4 */
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    animation: fadein 2s;
+}
+.key-box::after {
+    content: "";
+    display: block;
+    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+}
+
+@keyframes fadein {
+    from {
+    opacity: 0;
+    }
+    to {
+    opacity: 1;
     }
 }
 
-.key-break {
-    flex-basis: 100%;
-    height: 0;
+.key-box:nth-child(11) {
+  /* first hexagon of even rows */
+    margin-left: 5%; /* = width of .hex / 2  to indent even rows */
+}
+
+.key-box:nth-child(20) {
+  /* first hexagon of even rows */
+    margin-left: 10%; /* = width of .hex / 2  to indent even rows */
+}
+
+.box-in {
+    position: absolute;
+    width: 100%;
+    padding-bottom: 115.5%; /* =  width / sin(60) */
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+}
+
+.box-in * {
+    position: absolute;
+    visibility: visible;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+
+$key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$dark-purple} 0), conic-gradient(#{$orange} 33.3%,#{$light-orange} 0 66.6%, #{$dark-orange} 0), conic-gradient(#{$blue} 33.3%,#{$light-blue} 0 66.6%, #{$dark-blue} 0), conic-gradient(#{$green} 33.3%,#{$light-green} 0 66.6%, #{$dark-green} 0));
+
+@for $i from 1 through length($key-background) {
+    .key-box:nth-child(4n + #{$i}) .box-in .box-link {
+        background: nth($key-background,$i);
+    }
+}
+
+.box-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+}
+.key-letter {
+    transform: skewY(-30deg);
+    font-size: 3vw;
+    position: absolute;
+    left: 1vw;
+    top: 2.2vw;
+}
+
+.clicked-cube {
+    filter: saturate(0);
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+    transition: 1s ease-in-out;
 }
