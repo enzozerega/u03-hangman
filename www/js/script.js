@@ -36,16 +36,17 @@ function startKeyboard() {
 let words = ['Blue', 'Green', 'Yellow', 'Pink'];
 let indexRandom = Math.floor(Math.random() * words.length);
 let wordRandom = words[indexRandom];
-let winner = wordRandom.length;
+let win = wordRandom.length; // Becomes zero when current word is guessed
+let winner = words.length; // Becomes zero when all words are guessed
 
 function wordGenerator() {
   for (i=0; i < wordRandom.length; i++) {
-      let letterBox = document.createElement('div');
-      letterBox.className = 'letter-box';
-      let letterSpan = document.createElement('span');
-      letterSpan.className = 'input-letter';
-      document.getElementById('input-box').appendChild(letterBox);
-      letterBox.appendChild(letterSpan);
+    let letterBox = document.createElement('div');
+    letterBox.className = 'letter-box';
+    let letterSpan = document.createElement('span');
+    letterSpan.className = 'input-letter';
+    document.getElementById('input-box').appendChild(letterBox);
+    letterBox.appendChild(letterSpan);
   }
 }
 
@@ -55,21 +56,38 @@ function clickedCube(identifier) {
   for (i=0; i < wordRandom.length; i++) {
     if (wordRandom[i] === clickedKey || wordRandom[i] === clickedKey.toLowerCase()) {
       document.getElementsByClassName('input-letter')[i].innerHTML = clickedKey;
-      winner --;
+      win --;
+      /* Code for points earned */
     }
   }
-  if (winner === 0) {
+  if (win === 0) {
     /* Code for winning part */
+    winner --;
     let oldElements = document.getElementsByClassName('letter-box');
-    while(oldElements.length > 0) {
+    while(oldElements.length > 0) { // Deletes guessed word
       oldElements[0].parentNode.removeChild(oldElements[0]);
     }
-    
+    if (winner === 0) {
+      words = ['Blue', 'Green', 'Yellow', 'Pink'];
+      indexRandom = Math.floor(Math.random() * words.length);
+      wordRandom = words[indexRandom];
+      win = wordRandom.length; // Becomes zero when current word is guessed
+      winner = words.length;
+      for (j=0; j < keyLetter.length; j++) { // Faded clicked keys to initial style
+        document.getElementById('letter-'+keyLetter[j]).setAttribute('class', 'box-link');
+      }
+    }
+    else {
+      words.splice(indexRandom,1);
+      indexRandom = Math.floor(Math.random() * words.length);
+      wordRandom = words[indexRandom];
+      win = wordRandom.length;
+    }
     wordGenerator();
-    for (j=0; j < keyLetter.length; j++) {
+    for (j=0; j < keyLetter.length; j++) { // Faded clicked keys to initial style
       document.getElementById('letter-'+keyLetter[j]).setAttribute('class', 'box-link');
     }
-    delete words[indexRandom];
+    
   }
 }
 
