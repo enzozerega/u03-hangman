@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="scss/style.css" />
-    <link href="https://fonts.googleapis.com/css?family=Fredoka+One%7CMuli&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Modak%7CLuckiest+Guy%7CFredoka+One%7CMuli&display=swap" rel="stylesheet">
     <script type="text/javascript" src="js/script.js" async></script>
     <title>Hangman</title>
 </head>
@@ -19,11 +19,13 @@
         </div>
     </header>
     <main>
+        <div class="background"></div>
+        <div class="background-alternate"></div>
         <section>
-            <div class="hex-box">
+            <div id="hex-box">
                 <div class="hex-box-in">
-                    <a class="hex-box-link" href="#" onclick="startKeyboard(); wordGenerator(); removeButton()">
-                        <span class="start-game">Start<br>game</span>
+                    <a class="hex-box-link" onclick="/*startKeyboard(); wordGenerator();*/removeButton(); startInstructions()">
+                        Start<br>game
                     </a>
                 </div>
             </div>
@@ -33,9 +35,6 @@
             <div id="input-box">
 
             </div>
-            <ul id="keyboard">
-
-            </ul>
         </section>
     </main>
     <footer>

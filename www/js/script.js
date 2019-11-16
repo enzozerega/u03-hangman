@@ -1,11 +1,59 @@
 let keyLetter = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','X','C','V','B','N','M'];
+let wordCategories = ['Colors', 'Animals', 'Planets'];
+let instructionsT = 'Instructions';
+let instructions = ['You will be challenged to guess words of a category you choose.','The only clue you will have is the number of letters each word has.','Click on the different letters on the colorful keyboard and see if the word contains that letter.','Repeat until you have guessed all letters!'];
+
 
 function removeButton() {
-  let startButton = document.getElementsByClassName('hex-box');
+  let startButton = document.getElementsByClassName('hex-box-in');
   startButton[0].parentNode.removeChild(startButton[0]);
 }
 
+function startInstructions () {
+  document.getElementById('hex-box').setAttribute('id','instructions-box');
+  let instructionsBoxIn = document.createElement('div');
+  instructionsBoxIn.className = 'instructions-box-in';
+  document.getElementById('instructions-box').appendChild(instructionsBoxIn);
+  let instructionsBoxHex = document.createElement('div');
+  instructionsBoxHex.className = 'instructions-box-hex';
+  instructionsBoxIn.appendChild(instructionsBoxHex);
+  let instructionsTitle =  document.createElement('h2');
+  instructionsTitle.className = 'instructions-title';
+  instructionsTitle.innerHTML = instructionsT;
+  instructionsBoxHex.appendChild(instructionsTitle);
+  for (i=0; i < instructions.length; i++) {
+    let instructionsText =  document.createElement('p');
+    instructionsText.className = 'instructions-text';
+    instructionsText.innerHTML = instructions[i];
+    instructionsBoxHex.appendChild(instructionsText);
+  }
+  let startGame = document.createElement('a');
+  startGame.className = 'play-now';
+  startGame.innerHTML = 'PLAY NOW';
+  startGame.setAttribute('onclick','chooseCategory()');
+  instructionsBoxHex.appendChild(startGame);
+}
+
+function chooseCategory () {
+  let instructionsR = document.querySelector('.instructions-box-hex');
+  instructionsR.querySelectorAll('*').forEach(n => n.remove());
+  let wordCategoryTitle = document.createElement('h2');
+  wordCategoryTitle.className = 'word-category-title';
+  wordCategoryTitle.innerHTML = 'Choose a word category:';
+  instructionsR.appendChild(wordCategoryTitle);
+  for (i=0; i < wordCategories.length; i++) {
+    let wordCategory = document.createElement('a');
+    wordCategory.className = 'word-category';
+    wordCategory.innerHTML = wordCategories[i];
+    wordCategory.setAttribute('onclick','startKeyboard(); wordGenerator()');
+    instructionsR.appendChild(wordCategory);
+  }
+}
+
 function startKeyboard() {
+  let keyboard = document.createElement('ul');
+  keyboard.setAttribute('id','keyboard');
+  document.getElementsByTagName('section')[0].appendChild(keyboard);
   let i = 0; 
   do { 
     task(i); 
@@ -20,7 +68,6 @@ function startKeyboard() {
       let boxLink = document.createElement('a');
       boxLink.className = 'box-link';
       boxLink.setAttribute('id','letter-'+keyLetter[i]);
-      boxLink.setAttribute('href','#');
       boxLink.setAttribute('onclick','clickedCube('+"'"+'letter-'+keyLetter[i]+"'"+')');
       let keySpan = document.createElement('span');
       keySpan.className = 'key-letter';
@@ -40,6 +87,8 @@ let win = wordRandom.length; // Becomes zero when current word is guessed
 let winner = words.length; // Becomes zero when all words are guessed
 
 function wordGenerator() {
+  let instructionsR = document.querySelector('#instructions-box');
+  instructionsR.querySelectorAll('*').forEach(n => n.remove());
   for (i=0; i < wordRandom.length; i++) {
     let letterBox = document.createElement('div');
     letterBox.className = 'letter-box';
