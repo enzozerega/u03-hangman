@@ -23,25 +23,46 @@ $dark-green: #008B74;
     padding: 0;
     box-sizing: border-box;
 }
-body {
-    background-color: $main-color;
+.background {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right top, #845ec2, #a650ad, #bc4393, #c83c76, #cb3d5a, #cc4257, #cd4755, #ce4c53, #d35168, #d5587d, #d56192, #d16ba5);
+    z-index: -1;
+}
+
+
+.background-alternate {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to right bottom, #845ec2, #a650ad, #bc4393, #c83c76, #cb3d5a, #cc4257, #cd4755, #ce4c53, #d35168, #d5587d, #d56192, #d16ba5);
+    animation: colorChange 10s infinite;
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes colorChange {
+    0% {opacity: 1;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
 }
 //------------ GENERAL STYLE ------------//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //---------- START GAME BUTTON ----------//
-.hex-box {
+#hex-box {
     margin: 0;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    top: 30%;
+    left: 40%;
     width: 20vw; /* = 100 / 4 */
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
 }
-.hex-box::after {
+#hex-box::after {
     content: "";
     display: block;
     padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
@@ -67,15 +88,18 @@ body {
 }
 
 .hex-box-link {
-    display: block;
+    padding-top: 7.5vw;
     background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
+    cursor: pointer;
+    text-decoration: none;
     width: 100%;
     height: 100%;
+    font-family: "Fredoka One", sans-serif;
+    font-size: 3vw;
     text-align: center;
     color: #fff;
     overflow: hidden;
     transition: filter 0.5s;
-    filter: saturate(1);
     -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
     -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
@@ -84,19 +108,152 @@ body {
 .hex-box-link:hover {
     filter: saturate(1.5);
 }
-.start-game {
-    font-family: "Fredoka One", sans-serif;
-    font-size: 3vw;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+
+//---------- START GAME BUTTON ----------//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//------------ INSTRUCTIONS -------------//
+
+#instructions-box {
+    margin: 0;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    width: 20vw; /* = 100 / 4 */
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    animation: scalein 1s forwards;
 }
 
-/*Start button ends */
+#instructions-box::after {
+    content: "";
+    display: block;
+    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+    
+}
 
+@keyframes scalein {
+    from {
+    transform: scale(1);
+    }
+    to {
+    transform: scale(1.7);
+    }
+}
+
+.instructions-box-in {
+    position: absolute;
+    width: 100%;
+    padding-bottom: 115.5%; /* =  width / sin(60) */
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+}
+
+.instructions-box-in * {
+    position: absolute;
+    visibility: visible;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+
+.instructions-box-hex {
+    filter: saturate(1.5);
+    background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: filter 0.5s;
+    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+
+}
+
+.instructions-title {
+    margin: 2vw 1vw 1.5vw 1vw;
+    position: relative;
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    font-size: 1vw;
+    display: block;
+    text-align: center;
+    color: #fff;
+}
+
+.instructions-text {
+    margin: 0 1vw 1vw 1vw;
+    position: relative;
+    font-family: 'Muli', sans-serif;
+    font-size: .8vw;
+    display: block;
+    text-align: center;
+    color: #fff;
+}
+
+.play-now {
+    position: relative;
+    padding: .5vw;
+    margin: 1.5vw auto 0 auto;
+    width: 7vw;
+    font-family: 'Muli', sans-serif;
+    font-size: 1vw;
+    font-weight: bold;
+    border-radius: 50px;
+    display: block;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    background-color: $dark-purple;
+    transition: .3s;
+    cursor: pointer;
+    &:hover {
+        width: 10vw;
+        filter: saturate(2);
+
+    }
+}
+
+.word-category-title {
+    position: relative;
+    font-size: 1vw;
+    font-family: 'Muli', sans-serif;
+    font-weight: bold;
+    margin: 4vw 1vw 1.5vw 1vw;
+    text-align: center;
+    color: #fff;
+}
+
+.word-category {
+    position: relative;
+    width: 7vw;
+    margin: 1.5vw auto 0 auto;
+    padding: .5vw;
+    border-radius: 50px;
+    font-family: 'Muli', sans-serif;
+    font-size: 1vw;
+    display: block;
+    text-align: center;
+    color: #000;
+    background-color: $light-purple;
+    transition: .3s;
+    cursor: pointer;
+    &:hover {
+        width: 10vw;
+        filter: saturate(2);
+
+    }
+}
+
+//------------ INSTRUCTIONS -------------//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
+//------------ INSTRUCTIONS -------------//
 #input-box {
+    margin-top: 10vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -105,25 +262,30 @@ body {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    margin: 2vw 15vw;
-    background-color: #c773c7;
+
 }
 
 #input-box .letter-box {
-    font-family: "Muli", sans-serif;
-    font-size: 3vw;
-    border-bottom: 3px solid #b5ae93;
+    font-family: 'Luckiest Guy', cursive;
+    color: $light-purple;
+    border-radius: 50%;
+    font-size: 8vw;
     margin: 0.5vw;
-    width: 4vw;
-    height: 4vw;
+    width: 10vw;
+    height: 10vw;
     text-align: center;
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
 }
 
 #keyboard {
+    position: absolute;
+    top: 40%;
+    left: 5%;
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    margin: 0 auto;
     overflow: hidden;
     font-family: "Muli", sans-serif;
     list-style-type: none;
@@ -135,7 +297,7 @@ body {
     width: 10%; /* = 100 / 4 */
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    animation: fadein 2s;
+    animation: fadein .3s;
 }
 .key-box::after {
     content: "";
@@ -145,10 +307,10 @@ body {
 
 @keyframes fadein {
     from {
-    opacity: 0;
+    transform: scale(0);
     }
     to {
-    opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -186,11 +348,16 @@ $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$d
 @for $i from 1 through length($key-background) {
     .key-box:nth-child(4n + #{$i}) .box-in .box-link {
         background: nth($key-background,$i);
+        transition: filter 0.5s;
+        &:hover {
+            filter: saturate(1.7);
+        }
     }
 }
 
 .box-link {
     display: block;
+    cursor: pointer;
     width: 100%;
     height: 100%;
     text-align: center;
