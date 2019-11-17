@@ -3,10 +3,30 @@ let wordCategories = ['Colors', 'Animals', 'Planets'];
 let instructionsT = 'Instructions';
 let instructions = ['You will be challenged to guess words of a category you choose.','The only clue you will have is the number of letters each word has.','Click on the different letters on the colorful keyboard and see if the word contains that letter.','Repeat until you have guessed all letters!'];
 
+function restartGame() {
+  let sections = document.querySelector('section');
+  sections.querySelectorAll('*').forEach(n => n.remove());
+  let startButton = document.createElement('div');
+  startButton.setAttribute('id','hex-box');
+  let startBoxIn = document.createElement('div');
+  startBoxIn.className = 'hex-box-in';
+  let startBoxLink = document.createElement('a');
+  startBoxLink.className = 'hex-box-link';
+  startBoxLink.innerHTML = 'Start<br>game';
+  startBoxLink.setAttribute('onclick', onclick='removeButton(); startInstructions()');
+  sections.appendChild(startButton);
+  startButton.appendChild(startBoxIn);
+  startBoxIn.appendChild(startBoxLink);
+}
 
 function removeButton() {
   let startButton = document.getElementsByClassName('hex-box-in');
   startButton[0].parentNode.removeChild(startButton[0]);
+}
+
+function removeInstructions() {
+  let instructionsR = document.querySelector('#instructions-box');
+  instructionsR.remove();
 }
 
 function startInstructions () {
@@ -45,9 +65,26 @@ function chooseCategory () {
     let wordCategory = document.createElement('a');
     wordCategory.className = 'word-category';
     wordCategory.innerHTML = wordCategories[i];
-    wordCategory.setAttribute('onclick','startKeyboard(); wordGenerator()');
+    wordCategory.setAttribute('onclick','removeInstructions(); startKeyboard(); wordGenerator(); hangman()');
     instructionsR.appendChild(wordCategory);
   }
+}
+
+function hangman() {
+  let hangmanBox = document.createElement('div');
+  hangmanBox.setAttribute('id','hangman-box');
+  let hangmanBoxIn = document.createElement('div');
+  hangmanBoxIn.className = 'hangman-box-in';
+  let hangmanBoxHex = document.createElement('div');
+  hangmanBoxHex.className = 'hangman-box-hex';
+  document.querySelector('section').appendChild(hangmanBox);
+  hangmanBox.appendChild(hangmanBoxIn);
+  hangmanBoxIn.appendChild(hangmanBoxHex);
+  let hangmanFigure = document.createElement('img');
+  hangmanFigure.className = 'hangman-figure';
+  hangmanFigure.setAttribute('src','img/hangman1.png');
+  hangmanBoxHex.appendChild(hangmanFigure);
+  
 }
 
 function startKeyboard() {
@@ -80,20 +117,33 @@ function startKeyboard() {
   }
 }
 
-let words = ['Blue', 'Green', 'Yellow', 'Pink'];
-let indexRandom = Math.floor(Math.random() * words.length);
-let wordRandom = words[indexRandom];
-let win = wordRandom.length; // Becomes zero when current word is guessed
-let winner = words.length; // Becomes zero when all words are guessed
+let words;
+let indexRandom;
+let wordRandom;
+let win; // Becomes zero when current word is guessed
+let winner; // Becomes zero when all words are guessed
+let mistake;
+let k;
 
+function initiateVariables() {
+  words = ['Blue', 'Green', 'Yellow', 'Pink'];
+  indexRandom = Math.floor(Math.random() * words.length);
+  wordRandom = words[indexRandom];
+  win = wordRandom.length; // Becomes zero when current word is guessed
+  winner = words.length; // Becomes zero when all words are guessed
+  mistake = win;
+  k=2;
+}
+initiateVariables();
 function wordGenerator() {
-  let instructionsR = document.querySelector('#instructions-box');
-  instructionsR.querySelectorAll('*').forEach(n => n.remove());
   for (i=0; i < wordRandom.length; i++) {
+    let inputBox = document.createElement('div');
+    inputBox.setAttribute('id','input-box');
     let letterBox = document.createElement('div');
     letterBox.className = 'letter-box';
     let letterSpan = document.createElement('span');
     letterSpan.className = 'input-letter';
+    document.querySelector('section').appendChild(inputBox);
     document.getElementById('input-box').appendChild(letterBox);
     letterBox.appendChild(letterSpan);
   }
@@ -102,13 +152,19 @@ function wordGenerator() {
 function clickedCube(identifier) {
   document.getElementById(identifier).setAttribute('class', 'box-link clicked-cube');
   let clickedKey = document.getElementById(identifier).firstChild.innerHTML;
+  
   for (i=0; i < wordRandom.length; i++) {
     if (wordRandom[i] === clickedKey || wordRandom[i] === clickedKey.toLowerCase()) {
       document.getElementsByClassName('input-letter')[i].innerHTML = clickedKey;
-      win --;
+      win--;
       /* Code for points earned */
     }
   }
+  if (mistake === win) {
+    document.querySelector('.hangman-figure').setAttribute('src','img/hangman'+k+'.png');
+    k++;
+  }
+  mistake = win;
   if (win === 0) {
     /* Code for winning part */
     winner --;
@@ -138,5 +194,34 @@ function clickedCube(identifier) {
     }
     
   }
+  console.log(k);
+  if (k === 7) {
+    document.querySelector('#keyboard').remove();
+    let inputBoxR = document.querySelector('#input-box');
+    inputBoxR.querySelectorAll('*').forEach(n => n.remove());
+    let instuctionsBox = document.createElement('div');
+    instuctionsBox.setAttribute('id','instructions-box');
+    document.querySelector('section').appendChild(instuctionsBox);
+    let instructionsBoxIn = document.createElement('div');
+    instructionsBoxIn.className = 'instructions-box-in'
+    let instructionsBoxHex = document.createElement('div');
+    instructionsBoxHex.className = 'instructions-box-hex'
+    let gameOver = document.createElement('span');
+    gameOver.className = 'game-over';
+    gameOver.innerHTML = 'GAME OVER';
+    let playAgain = document.createElement('a');
+    playAgain.className = 'word-category';
+    playAgain.innerHTML = 'Play again';
+    playAgain.setAttribute('onclick','chooseCategory(); initiateVariables(); removeHangman()');
+    instuctionsBox.appendChild(instructionsBoxIn);
+    instructionsBoxIn.appendChild(instructionsBoxHex);
+    instructionsBoxHex.appendChild(gameOver);
+    gameOver.appendChild(playAgain);
+  }
 }
+function removeHangman() {
+  document.querySelector('#hangman-box').remove();
+}
+
+
 
