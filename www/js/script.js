@@ -9,6 +9,11 @@ function removeButton() {
   startButton[0].parentNode.removeChild(startButton[0]);
 }
 
+function removeInstructions() {
+  let instructionsR = document.querySelector('#instructions-box');
+  instructionsR.remove();
+}
+
 function startInstructions () {
   document.getElementById('hex-box').setAttribute('id','instructions-box');
   let instructionsBoxIn = document.createElement('div');
@@ -45,9 +50,23 @@ function chooseCategory () {
     let wordCategory = document.createElement('a');
     wordCategory.className = 'word-category';
     wordCategory.innerHTML = wordCategories[i];
-    wordCategory.setAttribute('onclick','startKeyboard(); wordGenerator()');
+    wordCategory.setAttribute('onclick','removeInstructions(); startKeyboard(); wordGenerator(); hangman()');
     instructionsR.appendChild(wordCategory);
   }
+}
+
+function hangman() {
+  let hangmanBoxIn = document.createElement('div');
+  hangmanBoxIn.className = 'hangman-box-in';
+  let hangmanBoxHex = document.createElement('div');
+  hangmanBoxHex.className = 'hangman-box-hex';
+  document.querySelector('#hangman-box').appendChild(hangmanBoxIn);
+  hangmanBoxIn.appendChild(hangmanBoxHex);
+  let hangmanFigure = document.createElement('img');
+  hangmanFigure.className = 'hangman-figure';
+  hangmanFigure.setAttribute('src','img/hangman2.png')
+  hangmanBoxHex.appendChild(hangmanFigure);
+  
 }
 
 function startKeyboard() {
@@ -87,8 +106,6 @@ let win = wordRandom.length; // Becomes zero when current word is guessed
 let winner = words.length; // Becomes zero when all words are guessed
 
 function wordGenerator() {
-  let instructionsR = document.querySelector('#instructions-box');
-  instructionsR.querySelectorAll('*').forEach(n => n.remove());
   for (i=0; i < wordRandom.length; i++) {
     let letterBox = document.createElement('div');
     letterBox.className = 'letter-box';

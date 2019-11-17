@@ -49,6 +49,17 @@ $dark-green: #008B74;
     50% {opacity: 0;}
     100% {opacity: 1;}
 }
+
+.hangman-menu {
+    position: fixed;
+    top:15vw;
+    left:5%;
+    font-family: "Fredoka One", sans-serif;
+    font-size: 5vw;
+    color: #fff;
+    list-style-type:none;
+}
+
 //------------ GENERAL STYLE ------------//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
@@ -252,27 +263,84 @@ $dark-green: #008B74;
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //------------ INSTRUCTIONS -------------//
-#input-box {
-    margin-top: 10vw;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
 
+#hangman-box {
+    position: absolute;
+    opacity: 0;
+    top: 26.5vw;
+    left: 6vw;
+    width: 21vw; /* = 100 / 4 */
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    animation: fadein 6s forwards;
+}
+
+#hangman-box::after {
+    content: "";
+    display: block;
+    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+    
+}
+
+@keyframes fadein {
+    from {
+    opacity: 0;
+    }
+    to {
+    opacity: 1;
+    }
+}
+
+.hangman-box-in {
+    position: absolute;
+    width: 100%;
+    padding-bottom: 115.5%; /* =  width / sin(60) */
+    margin: 0;
+    overflow: hidden;
+    visibility: hidden;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+}
+
+.hangman-box-in * {
+    position: absolute;
+    visibility: visible;
+    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+}
+
+.hangman-box-hex {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+}
+
+.hangman-figure {
+    height: 19vw;
+    top: 7%;
+    left: 27%;
+}
+
+
+#input-box {
+    margin-top: 18vw;
+    margin-left: 26%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #input-box .letter-box {
+    padding-top: .5vw;
     font-family: 'Luckiest Guy', cursive;
     color: $light-purple;
     border-radius: 50%;
-    font-size: 8vw;
+    font-size: 4vw;
     margin: 0.5vw;
-    width: 10vw;
-    height: 10vw;
+    width: 6vw;
+    height: 6vw;
     text-align: center;
     background-color: rgba(255, 255, 255, .15);
     backdrop-filter: blur(5px);
@@ -281,11 +349,11 @@ $dark-green: #008B74;
 
 #keyboard {
     position: absolute;
-    top: 40%;
-    left: 5%;
+    top: 56%;
+    left: 34%;
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 60%;
     overflow: hidden;
     font-family: "Muli", sans-serif;
     list-style-type: none;
@@ -297,7 +365,7 @@ $dark-green: #008B74;
     width: 10%; /* = 100 / 4 */
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    animation: fadein .3s;
+    animation: scalein .3s;
 }
 .key-box::after {
     content: "";
@@ -305,7 +373,7 @@ $dark-green: #008B74;
     padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
 }
 
-@keyframes fadein {
+@keyframes scalein {
     from {
     transform: scale(0);
     }
@@ -369,12 +437,15 @@ $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$d
 }
 .key-letter {
     transform: skewY(-30deg);
-    font-size: 3vw;
+    font-size: 2vw;
     position: absolute;
-    left: 1vw;
-    top: 2.2vw;
+    left: .7vw;
+    top: 1.3vw;
 }
 
+#letter-W .key-letter {
+    left: .3vw;
+}
 .clicked-cube {
     filter: saturate(0);
     opacity: 0.3;
