@@ -60,6 +60,7 @@
   font-size: 5vw;
   color: #fff;
   list-style-type: none;
+  cursor: pointer;
 }
 
 #hex-box {
@@ -137,8 +138,8 @@
   visibility: hidden;
   outline: 1px solid transparent;
   /* fix for jagged edges in FF on hover transition */
-  -webkit-animation: scalein 1s forwards;
-          animation: scalein 1s forwards;
+  -webkit-animation: zoomin 1s forwards;
+          animation: zoomin 1s forwards;
 }
 
 #instructions-box::after {
@@ -148,7 +149,7 @@
   /* =  100 / tan(60) * 1.5 */
 }
 
-@-webkit-keyframes scalein {
+@-webkit-keyframes zoomin {
   from {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -159,7 +160,7 @@
   }
 }
 
-@keyframes scalein {
+@keyframes zoomin {
   from {
     -webkit-transform: scale(1);
             transform: scale(1);
@@ -426,6 +427,17 @@
   /* =  100 / tan(60) * 1.5 */
 }
 
+@-webkit-keyframes scalein {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 @keyframes scalein {
   from {
     -webkit-transform: scale(0);
@@ -555,5 +567,18 @@
   cursor: default;
   -webkit-transition: 1s ease-in-out;
   transition: 1s ease-in-out;
+}
+
+.game-over {
+  font-size: 4vw;
+  font-family: 'Muli', sans-serif;
+  font-weight: bold;
+  margin: 5vw auto;
+  text-align: center;
+  color: #fff;
+}
+
+.game-over .word-category {
+  margin: 0.5vw auto 0 auto;
 }
 /*# sourceMappingURL=style.css.map */

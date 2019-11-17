@@ -13,7 +13,7 @@
     <header>
         <nav>
             <ul>
-                <li class='hangman-menu'>Hangman</li>
+                <li class='hangman-menu' onclick='restartGame()'>Hangman</li>
             </ul>
         </nav>
         <div class="site-cover">
@@ -26,16 +26,10 @@
         <section>
             <div id="hex-box">
                 <div class="hex-box-in">
-                    <a class="hex-box-link" onclick="/*startKeyboard(); wordGenerator();*/removeButton(); startInstructions()">
+                    <a class="hex-box-link" onclick="removeButton(); startInstructions()">
                         Start<br>game
                     </a>
                 </div>
-            </div>
-            <div id="hangman-box">
-
-            </div>
-            <div id="input-box">
-
             </div>
         </section>
     </main>
