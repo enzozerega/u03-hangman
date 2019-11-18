@@ -359,14 +359,14 @@
 
 .hangman-figure {
   height: 19vw;
-  top: 7%;
-  left: 27%;
+  top: 2vw;
+  left: 6vw;
 }
 
 .trophy {
   height: 17vw;
-  top: 16%;
-  left: 17%;
+  top: 4vw;
+  left: 3.5vw;
   -webkit-animation: scalein 2s;
           animation: scalein 2s;
 }
@@ -700,6 +700,7 @@
   }
   .hangman-figure {
     height: 28vw;
+    left: 8vw;
   }
   #keyboard {
     top: 75vw;
@@ -708,6 +709,8 @@
   }
   .trophy {
     height: 24vw;
+    left: 5.5vw;
+    top: 6vw;
   }
   .next-word {
     top: 109.5vw;
