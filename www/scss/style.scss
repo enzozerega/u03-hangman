@@ -72,29 +72,29 @@ $dark-green: #008B74;
     left: 40%;
     width: 20vw; /* = 100 / 4 */
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
 }
 #hex-box::after {
     content: "";
     display: block;
-    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+    padding-bottom: 86.602%;
 }
 
 .hex-box-in {
     position: absolute;
     width: 100%;
-    padding-bottom: 115.5%; /* =  width / sin(60) */
+    padding-bottom: 115.5%;
     margin: 0;
     overflow: hidden;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .hex-box-in * {
     position: absolute;
     visibility: visible;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
 }
 
 .hex-box-link {
@@ -129,14 +129,14 @@ $dark-green: #008B74;
     left: 40%;
     width: 20vw; /* = 100 / 4 */
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     animation: zoomin 1s forwards;
 }
 
 #instructions-box::after {
     content: "";
     display: block;
-    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+    padding-bottom: 86.602%;
     
 }
 
@@ -148,18 +148,18 @@ $dark-green: #008B74;
 .instructions-box-in {
     position: absolute;
     width: 100%;
-    padding-bottom: 115.5%; /* =  width / sin(60) */
+    padding-bottom: 115.5%;
     margin: 0;
     overflow: hidden;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .instructions-box-in * {
     position: absolute;
     visibility: visible;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
 }
 
 .instructions-box-hex {
@@ -257,16 +257,16 @@ $dark-green: #008B74;
     opacity: 0;
     top: 26.5vw;
     left: 6vw;
-    width: 21vw; /* = 100 / 4 */
+    width: 21vw;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     animation: fadein 2s forwards;
 }
 
 #hangman-box::after {
     content: "";
     display: block;
-    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+    padding-bottom: 86.602%;
     
 }
 
@@ -282,18 +282,18 @@ $dark-green: #008B74;
 .hangman-box-in {
     position: absolute;
     width: 100%;
-    padding-bottom: 115.5%; /* =  width / sin(60) */
+    padding-bottom: 115.5%;
     margin: 0;
     overflow: hidden;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .hangman-box-in * {
     position: absolute;
     visibility: visible;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
 }
 
 .hangman-box-hex {
@@ -391,13 +391,13 @@ $dark-green: #008B74;
     position: relative;
     width: 10%; /* = 100 / 4 */
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     animation: scalein .3s;
 }
 .key-box::after {
     content: "";
     display: block;
-    padding-bottom: 86.602%; /* =  100 / tan(60) * 1.5 */
+    padding-bottom: 86.602%;
 }
 
 @keyframes scalein {
@@ -410,32 +410,31 @@ $dark-green: #008B74;
 }
 
 .key-box:nth-child(11) {
-  /* first hexagon of even rows */
-    margin-left: 5%; /* = width of .hex / 2  to indent even rows */
+    margin-left: 5%; // Moves of second row so they match first row
 }
 
 .key-box:nth-child(20) {
-  /* first hexagon of even rows */
-    margin-left: 10%; /* = width of .hex / 2  to indent even rows */
+    margin-left: 10%; // Moves of third row so they match second row
 }
 
 .box-in {
     position: absolute;
     width: 100%;
-    padding-bottom: 115.5%; /* =  width / sin(60) */
+    padding-bottom: 115.5%;
     margin: 0;
     overflow: hidden;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .box-in * {
     position: absolute;
     visibility: visible;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
 }
 
+/* Generates colorful keys */
 $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$dark-purple} 0), conic-gradient(#{$orange} 33.3%,#{$light-orange} 0 66.6%, #{$dark-orange} 0), conic-gradient(#{$blue} 33.3%,#{$light-blue} 0 66.6%, #{$dark-blue} 0), conic-gradient(#{$green} 33.3%,#{$light-green} 0 66.6%, #{$dark-green} 0));
 
 @for $i from 1 through length($key-background) {

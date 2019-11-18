@@ -72,26 +72,22 @@
   /* = 100 / 4 */
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
 }
 
 #hex-box::after {
   content: "";
   display: block;
   padding-bottom: 86.602%;
-  /* =  100 / tan(60) * 1.5 */
 }
 
 .hex-box-in {
   position: absolute;
   width: 100%;
   padding-bottom: 115.5%;
-  /* =  width / sin(60) */
   margin: 0;
   overflow: hidden;
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
           transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
@@ -100,7 +96,6 @@
   position: absolute;
   visibility: visible;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
 }
 
 .hex-box-link {
@@ -137,7 +132,6 @@
   /* = 100 / 4 */
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-animation: zoomin 1s forwards;
           animation: zoomin 1s forwards;
 }
@@ -146,7 +140,6 @@
   content: "";
   display: block;
   padding-bottom: 86.602%;
-  /* =  100 / tan(60) * 1.5 */
 }
 
 @-webkit-keyframes zoomin {
@@ -175,12 +168,10 @@
   position: absolute;
   width: 100%;
   padding-bottom: 115.5%;
-  /* =  width / sin(60) */
   margin: 0;
   overflow: hidden;
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
           transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
@@ -189,7 +180,6 @@
   position: absolute;
   visibility: visible;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
 }
 
 .instructions-box-hex {
@@ -292,10 +282,8 @@
   top: 26.5vw;
   left: 6vw;
   width: 21vw;
-  /* = 100 / 4 */
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-animation: fadein 2s forwards;
           animation: fadein 2s forwards;
 }
@@ -304,7 +292,6 @@
   content: "";
   display: block;
   padding-bottom: 86.602%;
-  /* =  100 / tan(60) * 1.5 */
 }
 
 @-webkit-keyframes fadein {
@@ -329,12 +316,10 @@
   position: absolute;
   width: 100%;
   padding-bottom: 115.5%;
-  /* =  width / sin(60) */
   margin: 0;
   overflow: hidden;
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
           transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
@@ -343,7 +328,6 @@
   position: absolute;
   visibility: visible;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
 }
 
 .hangman-box-hex {
@@ -459,7 +443,6 @@
   /* = 100 / 4 */
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-animation: scalein .3s;
           animation: scalein .3s;
 }
@@ -468,7 +451,6 @@
   content: "";
   display: block;
   padding-bottom: 86.602%;
-  /* =  100 / tan(60) * 1.5 */
 }
 
 @-webkit-keyframes scalein {
@@ -494,27 +476,21 @@
 }
 
 .key-box:nth-child(11) {
-  /* first hexagon of even rows */
   margin-left: 5%;
-  /* = width of .hex / 2  to indent even rows */
 }
 
 .key-box:nth-child(20) {
-  /* first hexagon of even rows */
   margin-left: 10%;
-  /* = width of .hex / 2  to indent even rows */
 }
 
 .box-in {
   position: absolute;
   width: 100%;
   padding-bottom: 115.5%;
-  /* =  width / sin(60) */
   margin: 0;
   overflow: hidden;
   visibility: hidden;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
           transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
@@ -523,9 +499,9 @@
   position: absolute;
   visibility: visible;
   outline: 1px solid transparent;
-  /* fix for jagged edges in FF on hover transition */
 }
 
+/* Generates colorful keys */
 .key-box:nth-child(4n + 1) .box-in .box-link {
   background: conic-gradient(#be93fd 33.3%, #faccff 0 66.6%, #845ec2 0);
   -webkit-transition: -webkit-filter 0.5s;
