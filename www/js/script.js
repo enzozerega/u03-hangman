@@ -29,6 +29,11 @@ function removeInstructions() {
   instructionsR.remove();
 }
 
+function removeKeyboard() {
+  let keyboardR = document.querySelector('#keyboard');
+  keyboardR.remove();
+}
+
 function startInstructions () {
   document.getElementById('hex-box').setAttribute('id','instructions-box');
   let instructionsBoxIn = document.createElement('div');
@@ -65,7 +70,7 @@ function chooseCategory () {
     let wordCategory = document.createElement('a');
     wordCategory.className = 'word-category';
     wordCategory.innerHTML = wordCategories[i];
-    wordCategory.setAttribute('onclick','removeInstructions(); startKeyboard(); wordGenerator(); hangman()');
+    wordCategory.setAttribute('onclick','removeInstructions(); startKeyboard(); initiateVariables('+'"'+wordCategories[i]+'"'+'); wordGenerator(); hangman()');
     instructionsR.appendChild(wordCategory);
   }
 }
@@ -88,35 +93,38 @@ function hangman() {
 }
 
 function startKeyboard() {
-  let keyboard = document.createElement('ul');
-  keyboard.setAttribute('id','keyboard');
-  document.getElementsByTagName('section')[0].appendChild(keyboard);
-  let i = 0; 
-  do { 
-    task(i); 
-    i++; 
-  } while (i < keyLetter.length); 
-  function task(i) { 
-    setTimeout(function() { 
-      let keyBox = document.createElement('li');
-      keyBox.className = 'key-box';
-      let boxIn = document.createElement('div');
-      boxIn.className = 'box-in';
-      let boxLink = document.createElement('a');
-      boxLink.className = 'box-link';
-      boxLink.setAttribute('id','letter-'+keyLetter[i]);
-      boxLink.setAttribute('onclick','clickedCube('+"'"+'letter-'+keyLetter[i]+"'"+')');
-      let keySpan = document.createElement('span');
-      keySpan.className = 'key-letter';
-      keySpan.innerHTML = keyLetter[i];
-      document.getElementById('keyboard').appendChild(keyBox);
-      keyBox.appendChild(boxIn);
-      boxIn.appendChild(boxLink);
-      boxLink.appendChild(keySpan);
-    }, 100 * i); 
+  if (winner !== 0) {
+    let keyboard = document.createElement('ul');
+    keyboard.setAttribute('id','keyboard');
+    document.getElementsByTagName('section')[0].appendChild(keyboard);
+    let i = 0; 
+    do { 
+      task(i); 
+      i++; 
+    } while (i < keyLetter.length); 
+    function task(i) { 
+      setTimeout(function() { 
+        let keyBox = document.createElement('li');
+        keyBox.className = 'key-box';
+        let boxIn = document.createElement('div');
+        boxIn.className = 'box-in';
+        let boxLink = document.createElement('a');
+        boxLink.className = 'box-link';
+        boxLink.setAttribute('id','letter-'+keyLetter[i]);
+        boxLink.setAttribute('onclick','clickedCube('+"'"+'letter-'+keyLetter[i]+"'"+')');
+        let keySpan = document.createElement('span');
+        keySpan.className = 'key-letter';
+        keySpan.innerHTML = keyLetter[i];
+        document.getElementById('keyboard').appendChild(keyBox);
+        keyBox.appendChild(boxIn);
+        boxIn.appendChild(boxLink);
+        boxLink.appendChild(keySpan);
+      }, 100 * i); 
+    }
   }
 }
 
+let category;
 let words;
 let indexRandom;
 let wordRandom;
@@ -125,8 +133,16 @@ let winner; // Becomes zero when all words are guessed
 let mistake;
 let k;
 
-function initiateVariables() {
-  words = ['Blue', 'Green', 'Yellow', 'Pink'];
+function initiateVariables(category) {
+  if (category === 'Colors') {
+    words = ['Blue', 'Green', 'Yellow', 'Pink', 'White','Black'];
+  }
+  else if (category === 'Animals') {
+    words = ['Dog', 'Monkey', 'Bear', 'Cat'];
+  }
+  else if (category === 'Planets') {
+    words = ['Neptune', 'Mars', 'Venus', 'Earth'];
+  }
   indexRandom = Math.floor(Math.random() * words.length);
   wordRandom = words[indexRandom];
   win = wordRandom.length; // Becomes zero when current word is guessed
@@ -134,30 +150,77 @@ function initiateVariables() {
   mistake = win;
   k=2;
 }
-initiateVariables();
+
 function wordGenerator() {
+  let inputBox = document.createElement('div');
+  inputBox.setAttribute('id','input-box');
+  document.querySelector('section').appendChild(inputBox);
   for (i=0; i < wordRandom.length; i++) {
-    let inputBox = document.createElement('div');
-    inputBox.setAttribute('id','input-box');
     let letterBox = document.createElement('div');
     letterBox.className = 'letter-box';
     let letterSpan = document.createElement('span');
     letterSpan.className = 'input-letter';
-    document.querySelector('section').appendChild(inputBox);
     document.getElementById('input-box').appendChild(letterBox);
     letterBox.appendChild(letterSpan);
+  }
+}
+
+function removeWord() {
+  let oldElements = document.getElementsByClassName('letter-box');
+  while(oldElements.length > 0) { 
+    oldElements[0].parentNode.removeChild(oldElements[0]);
+  }
+}
+
+function restartHangman() {
+  document.querySelector('.hangman-figure').setAttribute('src','img/hangman1.png');
+  document.querySelector('.hangman-figure').setAttribute('class','hangman-figure');
+}
+
+function lockKeyboard() {
+  document.querySelectorAll('.box-link').forEach(n => n.setAttribute('onclick',""));
+  document.querySelectorAll('.box-link').forEach(n => n.setAttribute('class','box-link box-link-locked'));
+}
+
+function removeNextWord() {
+  let nextWordR = document.querySelector('.next-word');
+  nextWordR.remove();
+}
+
+function removeClass() {
+  document.querySelector('.game-over-box').setAttribute('class','""');
+}
+
+function winAll() {
+  if (winner === 0) {
+    removeWord();
+    restartHangman();
+    document.querySelector('.hangman-figure').setAttribute('src','img/trophy-gold.png');
+    document.querySelector('.hangman-figure').setAttribute('class','hangman-figure trophy');
+    let instuctionsBox = document.createElement('div');
+    instuctionsBox.setAttribute('id','instructions-box');
+    instuctionsBox.setAttribute('class','game-over-box');
+    document.querySelector('section').appendChild(instuctionsBox);
+    let instructionsBoxIn = document.createElement('div');
+    instructionsBoxIn.className = 'instructions-box-in'
+    let instructionsBoxHex = document.createElement('div');
+    instructionsBoxHex.className = 'instructions-box-hex'
+    let gameOver = document.createElement('span');
+    gameOver.className = 'game-over';
+    gameOver.innerHTML = '1st WINNER';
+    instuctionsBox.appendChild(instructionsBoxIn);
+    instructionsBoxIn.appendChild(instructionsBoxHex);
+    instructionsBoxHex.appendChild(gameOver);
   }
 }
 
 function clickedCube(identifier) {
   document.getElementById(identifier).setAttribute('class', 'box-link clicked-cube');
   let clickedKey = document.getElementById(identifier).firstChild.innerHTML;
-  
   for (i=0; i < wordRandom.length; i++) {
     if (wordRandom[i] === clickedKey || wordRandom[i] === clickedKey.toLowerCase()) {
       document.getElementsByClassName('input-letter')[i].innerHTML = clickedKey;
       win--;
-      /* Code for points earned */
     }
   }
   if (mistake === win) {
@@ -167,40 +230,34 @@ function clickedCube(identifier) {
   mistake = win;
   if (win === 0) {
     /* Code for winning part */
-    winner --;
-    let oldElements = document.getElementsByClassName('letter-box');
-    while(oldElements.length > 0) { // Deletes guessed word
-      oldElements[0].parentNode.removeChild(oldElements[0]);
-    }
-    if (winner === 0) {
-      words = ['Blue', 'Green', 'Yellow', 'Pink'];
-      indexRandom = Math.floor(Math.random() * words.length);
-      wordRandom = words[indexRandom];
-      win = wordRandom.length; // Becomes zero when current word is guessed
-      winner = words.length;
-      for (j=0; j < keyLetter.length; j++) { // Faded clicked keys to initial style
-        document.getElementById('letter-'+keyLetter[j]).setAttribute('class', 'box-link');
-      }
-    }
-    else {
-      words.splice(indexRandom,1);
+    document.querySelector('.hangman-figure').setAttribute('src','img/trophy.png');
+    document.querySelector('.hangman-figure').setAttribute('class','hangman-figure trophy');
+    document.querySelectorAll('.letter-box').forEach(n => n.setAttribute('class','letter-box win'));
+    winner--;
+    lockKeyboard();
+    let nextWord = document.createElement('div');
+    nextWord.className = 'next-word';
+    let nextWordText = document.createElement('span');
+    nextWordText.className = 'next-word-text';
+    nextWordText.innerHTML = 'Next<br>word';
+    nextWordText.setAttribute('onclick','removeWord(); wordGenerator(); restartHangman(); removeKeyboard(); startKeyboard(); winAll(); removeNextWord()')
+    document.querySelector('section').appendChild(nextWord);
+    nextWord.appendChild(nextWordText);
+
+    if (winner !== 0) {
+      words.splice(indexRandom,1); // Deletes guessed word from words array
       indexRandom = Math.floor(Math.random() * words.length);
       wordRandom = words[indexRandom];
       win = wordRandom.length;
     }
-    wordGenerator();
-    for (j=0; j < keyLetter.length; j++) { // Faded clicked keys to initial style
-      document.getElementById('letter-'+keyLetter[j]).setAttribute('class', 'box-link');
-    }
-    
   }
-  console.log(k);
   if (k === 7) {
     document.querySelector('#keyboard').remove();
     let inputBoxR = document.querySelector('#input-box');
     inputBoxR.querySelectorAll('*').forEach(n => n.remove());
     let instuctionsBox = document.createElement('div');
     instuctionsBox.setAttribute('id','instructions-box');
+    instuctionsBox.setAttribute('class','game-over-box');
     document.querySelector('section').appendChild(instuctionsBox);
     let instructionsBoxIn = document.createElement('div');
     instructionsBoxIn.className = 'instructions-box-in'
@@ -212,7 +269,7 @@ function clickedCube(identifier) {
     let playAgain = document.createElement('a');
     playAgain.className = 'word-category';
     playAgain.innerHTML = 'Play again';
-    playAgain.setAttribute('onclick','chooseCategory(); initiateVariables(); removeHangman()');
+    playAgain.setAttribute('onclick','chooseCategory(); initiateVariables(); removeHangman(); removeClass()');
     instuctionsBox.appendChild(instructionsBoxIn);
     instructionsBoxIn.appendChild(instructionsBoxHex);
     instructionsBoxHex.appendChild(gameOver);

@@ -88,8 +88,6 @@ $dark-green: #008B74;
     overflow: hidden;
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
@@ -112,8 +110,6 @@ $dark-green: #008B74;
     color: #fff;
     overflow: hidden;
     transition: filter 0.5s;
-    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
@@ -157,8 +153,6 @@ $dark-green: #008B74;
     overflow: hidden;
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
@@ -175,8 +169,6 @@ $dark-green: #008B74;
     height: 100%;
     overflow: hidden;
     transition: filter 0.5s;
-    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 
 }
@@ -252,7 +244,6 @@ $dark-green: #008B74;
     &:hover {
         width: 10vw;
         filter: saturate(2);
-
     }
 }
 
@@ -269,7 +260,7 @@ $dark-green: #008B74;
     width: 21vw; /* = 100 / 4 */
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    animation: fadein 6s forwards;
+    animation: fadein 2s forwards;
 }
 
 #hangman-box::after {
@@ -320,6 +311,40 @@ $dark-green: #008B74;
     left: 27%;
 }
 
+.trophy {
+    height: 17vw;
+    top: 16%;
+    left: 17%;
+    animation: scalein 2s;
+}
+
+.next-word {
+    position: absolute;
+    top: 16.5vw;
+    left: 88vw;
+    width: 0;
+    height: 0;
+    border-top: 5vw solid transparent;
+    border-left: 7vw solid rgba(255, 255, 255, .15);
+    border-bottom: 5vw solid transparent;
+    cursor: pointer;
+    transition: .5s;
+    &:hover {
+        border-left: 7vw solid rgba(255, 255, 255, 0.322);
+    }
+}
+
+.next-word-text {
+    position: absolute;
+    width: 10vw;
+    height: 5vw;
+    color: #fff;
+    top: -1.7vw;
+    left: -6.3vw;
+    font-size: 1.4vw;
+    font-family: "Fredoka One", sans-serif;
+}
+
 #input-box {
     margin-top: 18vw;
     margin-left: 26%;
@@ -328,7 +353,7 @@ $dark-green: #008B74;
     justify-content: center;
 }
 
-#input-box .letter-box {
+.letter-box {
     padding-top: .5vw;
     font-family: 'Luckiest Guy', cursive;
     color: $light-purple;
@@ -341,6 +366,12 @@ $dark-green: #008B74;
     background-color: rgba(255, 255, 255, .15);
     backdrop-filter: blur(5px);
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+}
+
+.win {
+    background-color: rgba(146, 255, 103, 0.198);
+    color:lightgreen;
+    transition: 1s;
 }
 
 #keyboard {
@@ -396,8 +427,6 @@ $dark-green: #008B74;
     overflow: hidden;
     visibility: hidden;
     outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
-    -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-    -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
     transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
@@ -427,10 +456,13 @@ $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$d
     text-align: center;
     color: #fff;
     overflow: hidden;
-    -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-    -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
     transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
+
+.box-link-locked {
+    cursor: default;
+}
+
 .key-letter {
     transform: skewY(-30deg);
     font-size: 2vw;
@@ -461,4 +493,119 @@ $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$d
 
 .game-over .word-category {
     margin: 0.5vw auto 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+    .hangman-menu {
+        top: 2vw;
+        left: 33vw;
+        font-size: 8vw;
+    }
+    #hex-box {
+        left: 31%;
+        width: 40vw;
+    }
+    .hex-box-link {
+        padding-top: 10.5vw;
+        font-size: 9vw;
+    }
+    #instructions-box {
+        left: 31%;
+        width: 40vw;
+    }
+
+    .game-over-box#instructions-box {
+        left: 36vw;
+        width: 30vw;
+        top: 80vw;
+    }
+    .key-letter {
+        font-size: 4vw;
+        top: 1.4vw;
+    }
+
+    .game-over {
+        font-size: 4vw;
+        margin: 14vw auto 0 auto;
+        width: 100%;
+    }
+    .instructions-title {
+        margin: 5vw 1vw 1.5vw 1vw;
+        font-size: 3vw;
+    }
+
+    .instructions-text, {
+        margin: 0 2vw 1vw 2vw;
+        font-size: 2vw;
+    }
+
+    .word-category-title {
+        margin: 11vw 1vw 4.5vw 1vw;
+        font-size: 3vw;
+    }
+
+    .play-now, .word-category {
+        width: 14vw;
+        font-size: 2vw;
+        transition: none;
+        &:hover {
+            width: 14vw;
+            filter: saturate(1);
+        }
+    }
+    #input-box {
+        margin-left: 2%;
+    }
+    .letter-box {
+        font-size: 7vw;
+        width: 10vw;
+        height: 10vw;
+    }
+    #hangman-box {
+        top: 32.5vw;
+        left: 36vw;
+        width: 30vw;
+    }
+    .hangman-figure {
+        height: 28vw;
+    }
+    #keyboard {
+        top: 75vw;
+        left: 0;
+        width: 100%;
+    }
+    .trophy {
+        height: 24vw;
+    }
+    .next-word {
+        top: 109.5vw;
+        left: 47vw;
+        border-top: 8vw solid transparent;
+        border-left: 12vw solid rgba(255, 255, 255, 0.15);
+        border-bottom: 8vw solid transparent;
+        transition: none;
+    }
+    .next-word-text {
+        top: -3.7vw;
+        left: -11.6vw;
+        font-size: 2.9vw;
+    }
+}
+
+/* Most browsers don't support conic-gradient yet */
+@supports (-moz-appearance:none) {
+    .hex-box-link, .instructions-box-hex {
+        background: none;
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+    }
+
+}
+
+@supports (-ms-ime-align: auto) {
+    .hex-box-link, .instructions-box-hex {
+        background: none;
+        background-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+    }
 }

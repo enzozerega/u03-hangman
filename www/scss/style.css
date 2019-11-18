@@ -93,7 +93,7 @@
   outline: 1px solid transparent;
   /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+          transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .hex-box-in * {
@@ -120,7 +120,7 @@
   transition: filter 0.5s;
   transition: filter 0.5s, -webkit-filter 0.5s;
   -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+          transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
 .hex-box-link:hover {
@@ -182,7 +182,7 @@
   outline: 1px solid transparent;
   /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+          transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .instructions-box-in * {
@@ -204,7 +204,7 @@
   transition: filter 0.5s;
   transition: filter 0.5s, -webkit-filter 0.5s;
   -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+          transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
 .instructions-title {
@@ -296,8 +296,8 @@
   visibility: hidden;
   outline: 1px solid transparent;
   /* fix for jagged edges in FF on hover transition */
-  -webkit-animation: fadein 6s forwards;
-          animation: fadein 6s forwards;
+  -webkit-animation: fadein 2s forwards;
+          animation: fadein 2s forwards;
 }
 
 #hangman-box::after {
@@ -363,6 +363,43 @@
   left: 27%;
 }
 
+.trophy {
+  height: 17vw;
+  top: 16%;
+  left: 17%;
+  -webkit-animation: scalein 2s;
+          animation: scalein 2s;
+}
+
+.next-word {
+  position: absolute;
+  top: 16.5vw;
+  left: 88vw;
+  width: 0;
+  height: 0;
+  border-top: 5vw solid transparent;
+  border-left: 7vw solid rgba(255, 255, 255, 0.15);
+  border-bottom: 5vw solid transparent;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.next-word:hover {
+  border-left: 7vw solid rgba(255, 255, 255, 0.322);
+}
+
+.next-word-text {
+  position: absolute;
+  width: 10vw;
+  height: 5vw;
+  color: #fff;
+  top: -1.7vw;
+  left: -6.3vw;
+  font-size: 1.4vw;
+  font-family: "Fredoka One", sans-serif;
+}
+
 #input-box {
   margin-top: 18vw;
   margin-left: 26%;
@@ -376,7 +413,7 @@
           justify-content: center;
 }
 
-#input-box .letter-box {
+.letter-box {
   padding-top: .5vw;
   font-family: 'Luckiest Guy', cursive;
   color: #faccff;
@@ -391,6 +428,13 @@
           backdrop-filter: blur(5px);
   -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.win {
+  background-color: rgba(146, 255, 103, 0.198);
+  color: lightgreen;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 #keyboard {
@@ -472,7 +516,7 @@
   outline: 1px solid transparent;
   /* fix for jagged edges in FF on hover transition */
   -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
-  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+          transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .box-in * {
@@ -543,7 +587,11 @@
   color: #fff;
   overflow: hidden;
   -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+          transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+}
+
+.box-link-locked {
+  cursor: default;
 }
 
 .key-letter {
@@ -580,5 +628,119 @@
 
 .game-over .word-category {
   margin: 0.5vw auto 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+  .hangman-menu {
+    top: 2vw;
+    left: 33vw;
+    font-size: 8vw;
+  }
+  #hex-box {
+    left: 31%;
+    width: 40vw;
+  }
+  .hex-box-link {
+    padding-top: 10.5vw;
+    font-size: 9vw;
+  }
+  #instructions-box {
+    left: 31%;
+    width: 40vw;
+  }
+  .game-over-box#instructions-box {
+    left: 36vw;
+    width: 30vw;
+    top: 80vw;
+  }
+  .key-letter {
+    font-size: 4vw;
+    top: 1.4vw;
+  }
+  .game-over {
+    font-size: 4vw;
+    margin: 14vw auto 0 auto;
+    width: 100%;
+  }
+  .instructions-title {
+    margin: 5vw 1vw 1.5vw 1vw;
+    font-size: 3vw;
+  }
+  .instructions-text {
+    margin: 0 2vw 1vw 2vw;
+    font-size: 2vw;
+  }
+  .word-category-title {
+    margin: 11vw 1vw 4.5vw 1vw;
+    font-size: 3vw;
+  }
+  .play-now, .word-category {
+    width: 14vw;
+    font-size: 2vw;
+    -webkit-transition: none;
+    transition: none;
+  }
+  .play-now:hover, .word-category:hover {
+    width: 14vw;
+    -webkit-filter: saturate(1);
+            filter: saturate(1);
+  }
+  #input-box {
+    margin-left: 2%;
+  }
+  .letter-box {
+    font-size: 7vw;
+    width: 10vw;
+    height: 10vw;
+  }
+  #hangman-box {
+    top: 32.5vw;
+    left: 36vw;
+    width: 30vw;
+  }
+  .hangman-figure {
+    height: 28vw;
+  }
+  #keyboard {
+    top: 75vw;
+    left: 0;
+    width: 100%;
+  }
+  .trophy {
+    height: 24vw;
+  }
+  .next-word {
+    top: 109.5vw;
+    left: 47vw;
+    border-top: 8vw solid transparent;
+    border-left: 12vw solid rgba(255, 255, 255, 0.15);
+    border-bottom: 8vw solid transparent;
+    -webkit-transition: none;
+    transition: none;
+  }
+  .next-word-text {
+    top: -3.7vw;
+    left: -11.6vw;
+    font-size: 2.9vw;
+  }
+}
+
+/* Most browsers don't support conic-gradient yet */
+@supports (-moz-appearance: none) {
+  .hex-box-link, .instructions-box-hex {
+    background: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+  }
+}
+
+@supports (-ms-ime-align: auto) {
+  .hex-box-link, .instructions-box-hex {
+    background: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+  }
 }
 /*# sourceMappingURL=style.css.map */
