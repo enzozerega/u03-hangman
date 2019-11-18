@@ -307,14 +307,14 @@ $dark-green: #008B74;
 
 .hangman-figure {
     height: 19vw;
-    top: 7%;
-    left: 27%;
+    top: 2vw;
+    left: 6vw;
 }
 
 .trophy {
     height: 17vw;
-    top: 16%;
-    left: 17%;
+    top: 4vw;
+    left: 3.5vw;
     animation: scalein 2s;
 }
 
@@ -568,6 +568,7 @@ $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$d
     }
     .hangman-figure {
         height: 28vw;
+        left: 8vw;
     }
     #keyboard {
         top: 75vw;
@@ -576,6 +577,8 @@ $key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$d
     }
     .trophy {
         height: 24vw;
+        left: 5.5vw;
+        top: 6vw;
     }
     .next-word {
         top: 109.5vw;
