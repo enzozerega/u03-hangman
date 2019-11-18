@@ -1,2 +1,3 @@
 <h1>Game project: Hangman</h1>
-![alt text](https://github.com/chas-academy/u03-hangman-enzozerega/blob/master/www/img/game.JPG)
+![game](https://user-images.githubusercontent.com/42303378/69045473-32148880-09f7-11ea-903f-a7f044e9c838.JPG)
+
