@@ -1,64 +1,98 @@
-
 //------------ COLOR PALETTE ------------//
-$main-color: #C34A36;
+$main-color: #c34a36;
 $dark-purple: #845ec2;
 $purple: #be93fd;
 $light-purple: #faccff;
-$dark-orange: #FF9671;
-$orange: #FFC75F;
-$light-orange: #F9F871;
-$light-blue: #4FFBDF;
-$blue: #00D2FC;
-$dark-blue: #009EFA;
-$light-green: #4FFBDF;
-$green: #00C2A8;
-$dark-green: #008B74;
+$dark-orange: #ff9671;
+$orange: #ffc75f;
+$light-orange: #f9f871;
+$light-blue: #4ffbdf;
+$blue: #00d2fc;
+$dark-blue: #009efa;
+$light-green: #4ffbdf;
+$green: #00c2a8;
+$dark-green: #008b74;
 
 //------------ COLOR PALETTE ------------//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //------------ GENERAL STYLE ------------//
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-.background {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to right top, #845ec2, #a650ad, #bc4393, #c83c76, #cb3d5a, #cc4257, #cd4755, #ce4c53, #d35168, #d5587d, #d56192, #d16ba5);
-    z-index: -1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+.background {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  min-height: 1100px;
+  width: 100%;
+  background: linear-gradient(
+    to right top,
+    #845ec2,
+    #a650ad,
+    #bc4393,
+    #c83c76,
+    #cb3d5a,
+    #cc4257,
+    #cd4755,
+    #ce4c53,
+    #d35168,
+    #d5587d,
+    #d56192,
+    #d16ba5
+  );
+  z-index: -1;
+}
 
 .background-alternate {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to right bottom, #845ec2, #a650ad, #bc4393, #c83c76, #cb3d5a, #cc4257, #cd4755, #ce4c53, #d35168, #d5587d, #d56192, #d16ba5);
-    animation: colorChange 10s infinite;
-    opacity: 0;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  min-height: 1100px;
+  width: 100%;
+  background: linear-gradient(
+    to right bottom,
+    #845ec2,
+    #a650ad,
+    #bc4393,
+    #c83c76,
+    #cb3d5a,
+    #cc4257,
+    #cd4755,
+    #ce4c53,
+    #d35168,
+    #d5587d,
+    #d56192,
+    #d16ba5
+  );
+  animation: colorChange 10s infinite;
+  opacity: 0;
+  z-index: -1;
 }
 
 @keyframes colorChange {
-    0% {opacity: 1;}
-    50% {opacity: 0;}
-    100% {opacity: 1;}
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .hangman-menu {
-    position: fixed;
-    top:15vw;
-    left:5%;
-    font-family: "Fredoka One", sans-serif;
-    font-size: 5vw;
-    color: #fff;
-    list-style-type:none;
-    cursor: pointer;
+  margin: 100px;
+  width: 30%;
+  font-family: "Fredoka One", sans-serif;
+  font-size: 5vw;
+  color: #fff;
+  list-style-type: none;
+  cursor: pointer;
 }
 
 //------------ GENERAL STYLE ------------//
@@ -66,55 +100,55 @@ $dark-green: #008B74;
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //---------- START GAME BUTTON ----------//
 #hex-box {
-    margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    width: 20vw; /* = 100 / 4 */
-    visibility: hidden;
-    outline: 1px solid transparent;
+  margin: 0;
+  position: absolute;
+  top: 21%;
+  left: 40%;
+  width: 20vw; /* = 100 / 4 */
+  visibility: hidden;
+  outline: 1px solid transparent;
 }
 #hex-box::after {
-    content: "";
-    display: block;
-    padding-bottom: 86.602%;
+  content: "";
+  display: block;
+  padding-bottom: 86.602%;
 }
 
 .hex-box-in {
-    position: absolute;
-    width: 100%;
-    padding-bottom: 115.5%;
-    margin: 0;
-    overflow: hidden;
-    visibility: hidden;
-    outline: 1px solid transparent;
-    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  position: absolute;
+  width: 100%;
+  padding-bottom: 115.5%;
+  margin: 0;
+  overflow: hidden;
+  visibility: hidden;
+  outline: 1px solid transparent;
+  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .hex-box-in * {
-    position: absolute;
-    visibility: visible;
-    outline: 1px solid transparent;
+  position: absolute;
+  visibility: visible;
+  outline: 1px solid transparent;
 }
 
 .hex-box-link {
-    padding-top: 7.5vw;
-    background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
-    cursor: pointer;
-    text-decoration: none;
-    width: 100%;
-    height: 100%;
-    font-family: "Fredoka One", sans-serif;
-    font-size: 3vw;
-    text-align: center;
-    color: #fff;
-    overflow: hidden;
-    transition: filter 0.5s;
-    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+  padding-top: 7.5vw;
+  background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
+  cursor: pointer;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  font-family: "Fredoka One", sans-serif;
+  font-size: 3vw;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  transition: filter 0.5s;
+  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
 .hex-box-link:hover {
-    filter: saturate(1.5);
+  filter: saturate(1.5);
 }
 
 //---------- START GAME BUTTON ----------//
@@ -123,491 +157,517 @@ $dark-green: #008B74;
 //------------ INSTRUCTIONS -------------//
 
 #instructions-box {
-    margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 40%;
-    width: 20vw; /* = 100 / 4 */
-    visibility: hidden;
-    outline: 1px solid transparent;
-    animation: zoomin 1s forwards;
+  margin: 0;
+  position: absolute;
+  top: 21%;
+  left: 40%;
+  width: 20vw; /* = 100 / 4 */
+  visibility: hidden;
+  outline: 1px solid transparent;
+  animation: zoomin 1s forwards;
 }
 
 #instructions-box::after {
-    content: "";
-    display: block;
-    padding-bottom: 86.602%;
-    
+  content: "";
+  display: block;
+  padding-bottom: 86.602%;
 }
 
 @keyframes zoomin {
-    from {transform: scale(1);}
-    to {transform: scale(1.7);}
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.7);
+  }
 }
 
 .instructions-box-in {
-    position: absolute;
-    width: 100%;
-    padding-bottom: 115.5%;
-    margin: 0;
-    overflow: hidden;
-    visibility: hidden;
-    outline: 1px solid transparent;
-    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  position: absolute;
+  width: 100%;
+  padding-bottom: 115.5%;
+  overflow: hidden;
+  visibility: hidden;
+  outline: 1px solid transparent;
+  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .instructions-box-in * {
-    position: absolute;
-    visibility: visible;
-    outline: 1px solid transparent;
+  position: absolute;
+  visibility: visible;
+  outline: 1px solid transparent;
 }
 
 .instructions-box-hex {
-    filter: saturate(1.5);
-    background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transition: filter 0.5s;
-    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
-
+  filter: saturate(1.5);
+  background: conic-gradient(#6097fb 33.3%, #0095e5 0 66.6%, #008cbd 0);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: filter 0.5s;
+  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
 .instructions-title {
-    margin: 2vw 1vw 1.5vw 1vw;
-    position: relative;
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
-    font-size: 1vw;
-    display: block;
-    text-align: center;
-    color: #fff;
+  margin: 2vw 1vw 1.5vw 1vw;
+  position: relative;
+  font-family: "Muli", sans-serif;
+  font-weight: bold;
+  font-size: 1vw;
+  display: block;
+  text-align: center;
+  color: #fff;
 }
 
 .instructions-text {
-    margin: 0 1vw 1vw 1vw;
-    position: relative;
-    font-family: 'Muli', sans-serif;
-    font-size: .8vw;
-    display: block;
-    text-align: center;
-    color: #fff;
+  margin: 0 1vw 1vw 1vw;
+  position: relative;
+  font-family: "Muli", sans-serif;
+  font-size: 0.8vw;
+  display: block;
+  text-align: center;
+  color: #fff;
 }
 
 .play-now {
-    position: relative;
-    padding: .5vw;
-    margin: 1.5vw auto 0 auto;
-    width: 7vw;
-    font-family: 'Muli', sans-serif;
-    font-size: 1vw;
-    font-weight: bold;
-    border-radius: 50px;
-    display: block;
-    text-align: center;
-    color: #fff;
-    text-decoration: none;
-    background-color: $dark-purple;
-    transition: .3s;
-    cursor: pointer;
-    &:hover {
-        width: 10vw;
-        filter: saturate(2);
-
-    }
+  position: relative;
+  padding: 0.5vw;
+  margin: 1.5vw auto 0 auto;
+  width: 7vw;
+  font-family: "Muli", sans-serif;
+  font-size: 1vw;
+  font-weight: bold;
+  border-radius: 50px;
+  display: block;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  background-color: $dark-purple;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    width: 10vw;
+    filter: saturate(2);
+  }
 }
 
 .word-category-title {
-    position: relative;
-    font-size: 1vw;
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
-    margin: 4vw 1vw 1.5vw 1vw;
-    text-align: center;
-    color: #fff;
+  position: relative;
+  font-size: 1vw;
+  font-family: "Muli", sans-serif;
+  font-weight: bold;
+  margin: 4vw 1vw 1.5vw 1vw;
+  text-align: center;
+  color: #fff;
 }
 
 .word-category {
-    position: relative;
-    width: 7vw;
-    margin: 1.5vw auto 0 auto;
-    padding: .5vw;
-    border-radius: 50px;
-    font-family: 'Muli', sans-serif;
-    font-size: 1vw;
-    display: block;
-    text-align: center;
-    color: #000;
-    background-color: $light-purple;
-    transition: .3s;
-    cursor: pointer;
-    &:hover {
-        width: 10vw;
-        filter: saturate(2);
-    }
+  position: relative;
+  width: 7vw;
+  margin: 1.5vw auto 0 auto;
+  padding: 0.5vw;
+  border-radius: 50px;
+  font-family: "Muli", sans-serif;
+  font-size: 1vw;
+  display: block;
+  text-align: center;
+  color: #000;
+  background-color: $light-purple;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    width: 10vw;
+    filter: saturate(2);
+  }
 }
 
 //------------ INSTRUCTIONS -------------//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX//
-//------------ INSTRUCTIONS -------------//
+//---------------- GAME -----------------//
 
 #hangman-box {
-    position: absolute;
-    opacity: 0;
-    top: 26.5vw;
-    left: 6vw;
-    width: 21vw;
-    visibility: hidden;
-    outline: 1px solid transparent;
-    animation: fadein 2s forwards;
-}
-
-#hangman-box::after {
-    content: "";
-    display: block;
-    padding-bottom: 86.602%;
-    
+  position: absolute;
+  opacity: 0;
+  top: 35%;
+  left: 6vw;
+  width: 21vw;
+  visibility: hidden;
+  outline: 1px solid transparent;
+  animation: fadein 2s forwards;
 }
 
 @keyframes fadein {
-    from {
+  from {
     opacity: 0;
-    }
-    to {
+  }
+  to {
     opacity: 1;
-    }
+  }
 }
 
 .hangman-box-in {
-    position: absolute;
-    width: 100%;
-    padding-bottom: 115.5%;
-    margin: 0;
-    overflow: hidden;
-    visibility: hidden;
-    outline: 1px solid transparent;
-    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  position: absolute;
+  width: 100%;
+  padding-bottom: 115.5%;
+  margin: 0;
+  overflow: hidden;
+  visibility: hidden;
+  outline: 1px solid transparent;
+  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .hangman-box-in * {
-    position: absolute;
-    visibility: visible;
-    outline: 1px solid transparent;
+  position: absolute;
+  visibility: visible;
+  outline: 1px solid transparent;
 }
 
 .hangman-box-hex {
-    background-color: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(5px);
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+  background-color: rgba(255, 255, 255, 0.15);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
 .hangman-figure {
-    height: 19vw;
-    top: 2vw;
-    left: 6vw;
+  height: 19vw;
+  top: 2vw;
+  left: 6vw;
 }
 
 .trophy {
-    height: 17vw;
-    top: 4vw;
-    left: 3.5vw;
-    animation: scalein 2s;
+  height: 17vw;
+  top: 4vw;
+  left: 3.5vw;
+  animation: scalein 2s;
 }
 
 .next-word {
-    position: absolute;
-    top: 16.5vw;
-    left: 88vw;
-    width: 0;
-    height: 0;
-    border-top: 5vw solid transparent;
-    border-left: 7vw solid rgba(255, 255, 255, .15);
-    border-bottom: 5vw solid transparent;
-    cursor: pointer;
-    transition: .5s;
-    &:hover {
-        border-left: 7vw solid rgba(255, 255, 255, 0.322);
-    }
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  top: 20%;
+  right: 2%;
+  border-radius: 20%;
+  width: 6vw;
+  height: 6vw;
+  cursor: pointer;
+  transition: 0.5s;
+  animation: scalein 0.3s;
+  &:hover {
+    background-color: $purple;
+  }
 }
 
 .next-word-text {
-    position: absolute;
-    width: 10vw;
-    height: 5vw;
-    color: #fff;
-    top: -1.7vw;
-    left: -6.3vw;
-    font-size: 1.4vw;
-    font-family: "Fredoka One", sans-serif;
+  margin-left: 17px;
+  color: #fff;
+  font-size: 1.4vw;
+  font-family: "Fredoka One", sans-serif;
 }
 
 #input-box {
-    margin-top: 18vw;
-    margin-left: 26%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  position: absolute;
+  top: 20%;
+  left: 33%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .letter-box {
-    padding-top: .5vw;
-    font-family: 'Luckiest Guy', cursive;
-    color: $light-purple;
-    border-radius: 50%;
-    font-size: 4vw;
-    margin: 0.5vw;
-    width: 6vw;
-    height: 6vw;
-    text-align: center;
-    background-color: rgba(255, 255, 255, .15);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+  padding-top: 0.5vw;
+  font-family: "Luckiest Guy", cursive;
+  color: $light-purple;
+  border-radius: 50%;
+  font-size: 4vw;
+  margin: 0.5vw;
+  width: 6vw;
+  height: 6vw;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 
 .win {
-    background-color: rgba(146, 255, 103, 0.198);
-    color:lightgreen;
-    transition: 1s;
+  background-color: rgba(146, 255, 103, 0.198);
+  color: lightgreen;
+  transition: 1s;
 }
 
 #keyboard {
-    position: absolute;
-    top: 56%;
-    left: 34%;
-    display: flex;
-    flex-wrap: wrap;
-    width: 60%;
-    overflow: hidden;
-    font-family: "Muli", sans-serif;
-    list-style-type: none;
-    padding-bottom: 7%;
+  position: absolute;
+  top: 50%;
+  left: 34%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  overflow: hidden;
+  font-family: "Muli", sans-serif;
+  list-style-type: none;
+  padding-bottom: 7%;
 }
 
 .key-box {
-    position: relative;
-    width: 10%; /* = 100 / 4 */
-    visibility: hidden;
-    outline: 1px solid transparent;
-    animation: scalein .3s;
+  position: relative;
+  width: 10%; /* = 100 / 4 */
+  visibility: hidden;
+  outline: 1px solid transparent;
+  animation: scalein 0.3s;
 }
 .key-box::after {
-    content: "";
-    display: block;
-    padding-bottom: 86.602%;
+  content: "";
+  display: block;
+  padding-bottom: 86.602%;
 }
 
 @keyframes scalein {
-    from {
+  from {
     transform: scale(0);
-    }
-    to {
-        transform: scale(1);
-    }
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .key-box:nth-child(11) {
-    margin-left: 5%; // Moves of second row so they match first row
+  margin-left: 5%; // Moves of second row so they match first row
 }
 
 .key-box:nth-child(20) {
-    margin-left: 10%; // Moves of third row so they match second row
+  margin-left: 10%; // Moves of third row so they match second row
 }
 
 .box-in {
-    position: absolute;
-    width: 100%;
-    padding-bottom: 115.5%;
-    margin: 0;
-    overflow: hidden;
-    visibility: hidden;
-    outline: 1px solid transparent;
-    transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  position: absolute;
+  width: 100%;
+  padding-bottom: 115.5%;
+  margin: 0;
+  overflow: hidden;
+  visibility: hidden;
+  outline: 1px solid transparent;
+  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
 }
 
 .box-in * {
-    position: absolute;
-    visibility: visible;
-    outline: 1px solid transparent;
+  position: absolute;
+  visibility: visible;
+  outline: 1px solid transparent;
 }
 
 /* Generates colorful keys */
-$key-background: (conic-gradient(#{$purple} 33.3%,#{$light-purple} 0 66.6%, #{$dark-purple} 0), conic-gradient(#{$orange} 33.3%,#{$light-orange} 0 66.6%, #{$dark-orange} 0), conic-gradient(#{$blue} 33.3%,#{$light-blue} 0 66.6%, #{$dark-blue} 0), conic-gradient(#{$green} 33.3%,#{$light-green} 0 66.6%, #{$dark-green} 0));
+$key-background: (
+  conic-gradient(#{$purple} 33.3%, #{$light-purple} 0 66.6%, #{$dark-purple} 0),
+  conic-gradient(#{$orange} 33.3%, #{$light-orange} 0 66.6%, #{$dark-orange} 0),
+  conic-gradient(#{$blue} 33.3%, #{$light-blue} 0 66.6%, #{$dark-blue} 0),
+  conic-gradient(#{$green} 33.3%, #{$light-green} 0 66.6%, #{$dark-green} 0)
+);
 
 @for $i from 1 through length($key-background) {
-    .key-box:nth-child(4n + #{$i}) .box-in .box-link {
-        background: nth($key-background,$i);
-        transition: filter 0.5s;
-        &:hover {
-            filter: saturate(1.7);
-        }
+  .key-box:nth-child(4n + #{$i}) .box-in .box-link {
+    background: nth($key-background, $i);
+    transition: filter 0.5s;
+    &:hover {
+      filter: saturate(1.7);
     }
+  }
 }
 
 .box-link {
-    display: block;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    color: #fff;
-    overflow: hidden;
-    transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
 }
 
 .box-link-locked {
-    cursor: default;
+  cursor: default;
 }
 
 .key-letter {
-    transform: skewY(-30deg);
-    font-size: 2vw;
-    position: absolute;
-    left: .7vw;
-    top: 1.3vw;
+  transform: skewY(-30deg);
+  font-size: 2vw;
+  position: absolute;
+  left: 0.7vw;
+  top: 1.3vw;
 }
 
 #letter-W .key-letter {
-    left: .3vw;
+  left: 0.3vw;
 }
 .clicked-cube {
-    filter: saturate(0);
-    opacity: 0.3;
-    pointer-events: none;
-    cursor: default;
-    transition: 1s ease-in-out;
+  filter: saturate(0);
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
+  transition: 1s ease-in-out;
 }
 
 .game-over {
-    font-size: 4vw;
-    font-family: 'Muli', sans-serif;
-    font-weight: bold;
-    margin: 5vw auto;
-    text-align: center;
-    color: #fff;
+  font-size: 4vw;
+  font-family: "Muli", sans-serif;
+  font-weight: bold;
+  margin: 5vw auto;
+  text-align: center;
+  color: #fff;
 }
 
 .game-over .word-category {
-    margin: 0.5vw auto 0 auto;
+  margin: 0.5vw auto 0 auto;
+}
+
+@media screen and (max-width: 1440px) {
+  .background {
+    min-height: 600px;
+  }
+  .background-alternate {
+    min-height: 600px;
+  }
 }
 
 @media screen and (max-width: 900px) {
-    .hangman-menu {
-        top: 2vw;
-        left: 33vw;
-        font-size: 8vw;
-    }
-    #hex-box {
-        left: 31%;
-        width: 40vw;
-    }
-    .hex-box-link {
-        padding-top: 10.5vw;
-        font-size: 9vw;
-    }
-    #instructions-box {
-        left: 31%;
-        width: 40vw;
-    }
+  .background {
+    min-height: 1000px;
+  }
+  .background-alternate {
+    min-height: 1000px;
+  }
 
-    .game-over-box#instructions-box {
-        left: 36vw;
-        width: 30vw;
-        top: 80vw;
-    }
-    .key-letter {
-        font-size: 4vw;
-        top: 1.4vw;
-    }
+  nav > ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
 
-    .game-over {
-        font-size: 4vw;
-        margin: 14vw auto 0 auto;
-        width: 100%;
-    }
-    .instructions-title {
-        margin: 5vw 1vw 1.5vw 1vw;
-        font-size: 3vw;
-    }
+  .hangman-menu {
+    margin: 30px 0 0 0;
+  }
 
-    .instructions-text, {
-        margin: 0 2vw 1vw 2vw;
-        font-size: 2vw;
-    }
+  .game {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    align-items: center;
+  }
 
-    .word-category-title {
-        margin: 11vw 1vw 4.5vw 1vw;
-        font-size: 3vw;
-    }
+  .game > * {
+    margin: 50px 0;
+  }
 
-    .play-now, .word-category {
-        width: 14vw;
-        font-size: 2vw;
-        transition: none;
-        &:hover {
-            width: 14vw;
-            filter: saturate(1);
-        }
+  .hangman-menu {
+    font-size: 8vw;
+  }
+  #hex-box {
+    left: 31%;
+    width: 40vw;
+  }
+  .hex-box-link {
+    padding-top: 10.5vw;
+    font-size: 9vw;
+  }
+
+  #instructions-box {
+    position: unset;
+    width: 40vw;
+    margin-top: 120px;
+  }
+  .key-letter {
+    font-size: 4vw;
+    top: 1.4vw;
+  }
+
+  .game-over {
+    font-size: 4vw;
+    margin: 14vw auto 0 auto;
+    width: 100%;
+  }
+  .instructions-title {
+    margin: 5vw 1vw 1.5vw 1vw;
+    font-size: 3vw;
+  }
+
+  .instructions-text {
+    margin: 0 2vw 1vw 2vw;
+    font-size: 2vw;
+  }
+
+  .word-category-title {
+    margin: 11vw 1vw 4.5vw 1vw;
+    font-size: 3vw;
+  }
+
+  .play-now,
+  .word-category {
+    width: 14vw;
+    font-size: 2vw;
+    transition: none;
+    &:hover {
+      width: 14vw;
+      filter: saturate(1);
     }
-    #input-box {
-        margin-left: 2%;
-    }
-    .letter-box {
-        font-size: 7vw;
-        width: 10vw;
-        height: 10vw;
-    }
-    #hangman-box {
-        top: 32.5vw;
-        left: 36vw;
-        width: 30vw;
-    }
-    .hangman-figure {
-        height: 28vw;
-        left: 8vw;
-    }
-    #keyboard {
-        top: 75vw;
-        left: 0;
-        width: 100%;
-    }
-    .trophy {
-        height: 24vw;
-        left: 5.5vw;
-        top: 6vw;
-    }
-    .next-word {
-        top: 109.5vw;
-        left: 47vw;
-        border-top: 8vw solid transparent;
-        border-left: 12vw solid rgba(255, 255, 255, 0.15);
-        border-bottom: 8vw solid transparent;
-        transition: none;
-    }
-    .next-word-text {
-        top: -3.7vw;
-        left: -11.6vw;
-        font-size: 2.9vw;
-    }
+  }
+  #input-box,
+  #hangman-box,
+  #keyboard,
+  .hangman-box-in {
+    position: unset;
+  }
+
+  #input-box {
+    order: 2;
+    width: 100%;
+  }
+  .letter-box {
+    font-size: 7vw;
+    width: 10vw;
+    height: 10vw;
+  }
+  #keyboard {
+    order: 3;
+    top: 75vw;
+    left: 0;
+    width: 100%;
+  }
+  #hangman-box {
+    order: 1;
+  }
+
+  .next-word {
+    width: 10vw;
+    height: 10vw;
+  }
+  .next-word-text {
+    font-size: 3vw;
+    margin-left: 10px;
+  }
 }
 
 /* Most browsers don't support conic-gradient yet */
-@supports (-moz-appearance:none) {
-    .hex-box-link, .instructions-box-hex {
-        background: none;
-        background-color: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(5px);
-    }
-
+@supports (-moz-appearance: none) {
+  .hex-box-link,
+  .instructions-box-hex {
+    background: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+  }
 }
 
 @supports (-ms-ime-align: auto) {
-    .hex-box-link, .instructions-box-hex {
-        background: none;
-        background-color: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(5px);
-    }
+  .hex-box-link,
+  .instructions-box-hex {
+    background: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+  }
 }
